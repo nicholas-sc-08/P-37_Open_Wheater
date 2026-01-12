@@ -19,22 +19,26 @@ public class WeatherService {
     @Value("${openweather.api.key}")
     private String apiKey;
 
-    public Weather getByNameWeather(String name) {
+    public Weather getWeatherByName(String name) {
+        try {
+            String url = "https://api.openweathermap.org/data/2.5/weather?q=" + name + "&appid=" + apiKey + "&units=metric&lang=pt-br";
+            
+            restTemplate = new RestTemplate();
+            WeatherDTO weather = restTemplate.getForObject(url, WeatherDTO.class);
+            
+            Weather res = new Weather();
+            res.setName(weather.getName());
+            res.setMain(weather.getWeather().get(0).getMain());
+            res.setDescription(weather.getWeather().get(0).getDescription());
+            res.setIcon(weather.getWeather().get(0).getIcon());
+            res.setTemp(weather.getMain().getTemp());
+            res.setHumidity(weather.getMain().getHumidity());
+            res.setWindSpeed(weather.getWind().getSpeed());
         
-        String url = "https://api.openweathermap.org/data/2.5/weather?q=" + name + "&appid=" + apiKey + "&units=metric&lang=pt-br";
-        
-        restTemplate = new RestTemplate();
-        WeatherDTO weather = restTemplate.getForObject(url, WeatherDTO.class);
-
-        Weather res = new Weather();
-        res.setName(weather.getName());
-        res.setMain(weather.getWeather().get(0).getMain());
-        res.setDescription(weather.getWeather().get(0).getDescription());
-        res.setIcon(weather.getWeather().get(0).getIcon());
-        res.setTemp(weather.getMain().getTemp());
-        res.setHumidity(weather.getMain().getHumidity());
-        res.setWindSpeed(weather.getWind().getSpeed());
-
-        return weatherRepo.save(res);
+            return weatherRepo.save(res);
+    
+        } catch (Exception e) {
+            return null;
+        }
     } 
 }
