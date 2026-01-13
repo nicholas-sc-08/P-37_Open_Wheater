@@ -1,4 +1,4 @@
-package br.com.ow.Open.Wheater.dto;
+package br.com.ow.Open.Weather.dto;
 
 import java.util.List;
 

@@ -1,29 +1,29 @@
 services:
-  mysql_weather:
+  mysql:
     image: mysql:8.0
+    container_name: mysql-db
     restart: always
     environment:
       MYSQL_DATABASE: db_ow
       MYSQL_ROOT_PASSWORD: Mysql
-    ports:
-      - "3306:3306"
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pMysql"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    volumes:
+      - mysql_data:/var/lib/mysql
 
   app:
     build: .
+    container_name: spring-app
+    restart: always
+    depends_on:
+      - mysql
     ports:
       - "8080:8080"
-    depends_on:
-      mysql_weather:
-        condition: service_healthy
     environment:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: Mysql
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_weather:3306/db_ow?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_ow?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL: "true"
       OPENWEATHER_API_KEY: b8e65d21e0e558bf3451c6438977c83d
+
+volumes:
+  mysql_data:

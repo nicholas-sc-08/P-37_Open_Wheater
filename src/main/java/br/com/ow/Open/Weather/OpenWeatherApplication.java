@@ -1,13 +1,13 @@
-package br.com.ow.Open.Wheater;
+package br.com.ow.Open.Weather;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OpenWheaterApplication {
+public class OpenWeatherApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OpenWheaterApplication.class, args);
+		SpringApplication.run(OpenWeatherApplication.class, args);
 	}
 
 }
