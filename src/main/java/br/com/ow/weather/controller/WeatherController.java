@@ -10,18 +10,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ow.weather.model.Weather;
 import br.com.ow.weather.service.WeatherService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
+@Tag(name = "Weather Endpoint", description = "Return the climate of cities or states.")
 public class WeatherController {
     
     @Autowired
     private WeatherService weatherService;
 
+    @Operation(summary = "Get all the weathers of cities or states saved in the table weather.")
     @GetMapping("/weather")
     public ResponseEntity<List<Weather>> getAllWeathers() {
         return ResponseEntity.ok().body(weatherService.getAllWeathers());
     }
 
+    @Operation(summary = "Get specific weather information for a city and save it in the database.")
     @GetMapping("/weather/{name}")
     public ResponseEntity<?> getWeatherByName(@PathVariable String name) {
         try {
