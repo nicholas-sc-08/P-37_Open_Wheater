@@ -1,4 +1,4 @@
-package br.com.ow.Open.Weather.model;
+package br.com.ow.weather.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

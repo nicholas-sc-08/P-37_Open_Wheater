@@ -1,4 +1,4 @@
-package br.com.ow.Open.Weather.controller;
+package br.com.ow.weather.controller;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ow.Open.Weather.model.Weather;
-import br.com.ow.Open.Weather.service.WeatherService;
+import br.com.ow.weather.model.Weather;
+import br.com.ow.weather.service.WeatherService;
 
 @RestController
 public class WeatherController {
@@ -37,3 +37,4 @@ public class WeatherController {
         }
     }
 }
+

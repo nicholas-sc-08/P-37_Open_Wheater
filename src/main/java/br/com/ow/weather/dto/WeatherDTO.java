@@ -1,4 +1,4 @@
-package br.com.ow.Open.Weather.dto;
+package br.com.ow.weather.dto;
 
 import java.util.List;
 
@@ -29,3 +29,4 @@ public class WeatherDTO {
         private Double speed;
     }
 }
+

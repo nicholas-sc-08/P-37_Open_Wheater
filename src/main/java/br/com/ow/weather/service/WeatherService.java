@@ -1,4 +1,5 @@
-package br.com.ow.Open.Weather.service;
+package br.com.ow.weather.service;
+
 
 import java.util.List;
 
@@ -7,9 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.ow.Open.Weather.dto.WeatherDTO;
-import br.com.ow.Open.Weather.model.Weather;
-import br.com.ow.Open.Weather.repository.WeatherRepo;
+import br.com.ow.weather.dto.WeatherDTO;
+import br.com.ow.weather.model.Weather;
+import br.com.ow.weather.repository.WeatherRepo;
 
 @Service
 public class WeatherService {

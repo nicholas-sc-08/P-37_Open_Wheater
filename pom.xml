@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.ow</groupId>
-	<artifactId>Open-Wheater</artifactId>
+	<artifactId>weather</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Open-Wheater</name>
-	<description>Open Wheater project for Spring Boot</description>
+	<name>weather</name>
+	<description>Weather project for Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
