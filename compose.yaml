@@ -1,10 +1,29 @@
 services:
   mysql:
-    image: 'mysql:latest'
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+      MYSQL_DATABASE: db_ow
+      MYSQL_ROOT_PASSWORD: Mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: spring-app
+    restart: always
+    depends_on:
+      - mysql
     ports:
-      - '3306'
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Mysql
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_ow?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      OPENWEATHER_API_KEY: b8e65d21e0e558bf3451c6438977c83d
+
+volumes:
+  mysql_data:

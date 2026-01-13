@@ -1,4 +1,4 @@
-package br.com.ow.Open.Wheater.model;
+package br.com.ow.weather.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
